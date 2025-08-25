@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Faculty Form 4 Tables</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              pmcPurple: "#6a2c91",
+              pmcPurpleDark: "#501e73",
+              pmcBg: "#f6f4f8",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-pmcBg min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-pmcPurple text-white shadow-md">
+      <div
+        class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3"
+      >
+        <a href="#" class="flex items-center">
+          <img
+            src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="PMC Logo"
+            class="h-12 mr-4 rounded shadow"
+          />
+        </a>
+        <ul class="flex items-center gap-6 text-base font-medium">
+          <li><a href="hod.html" class="hover:underline">HOD Dashboard</a></li>
+          <li><span class="font-bold">Username</span></li>
+          <li><span class="text-2xl">👤</span></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="max-w-6xl mx-auto mt-8 px-4">
+      <h2 class="text-2xl font-bold text-pmcPurple mb-6 text-center">
+        All Faculty Form 4 Tables
+      </h2>
+      <div id="allTablesContainer"></div>
+    </div>
+    <!-- SheetJS (xlsx) CDN for Excel export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script>
+      const TABLES = [
+        {
+          name: "form4-Weekly",
+          label: "4. Course outcome & Program Outcome Member: Weekly",
+        },
+        {
+          name: "form4-once in a month",
+          label: "4. Course outcome & Program Outcome Member: Once in a Month",
+        },
+        {
+          name: "form4-once in a semester",
+          label:
+            "4. Course outcome & Program Outcome Member: Once in a Semester",
+        },
+      ];
+      const supabaseClient = window.supabase.createClient(
+        "https://cbhodgwaazmjszkujrti.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiaG9kZ3dhYXptanN6a3VqcnRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2NzY4NzEsImV4cCI6MjA3MTI1Mjg3MX0.sBRdfiWJJmZtLWsHCcNyxm1VcwkGwZWsIeeMlS49XTU"
+      );
+      function decodeHexUrl(url) {
+        if (!url) return "";
+        if (url.startsWith("https://cbhodgwaazmjszkujrti.supabase.co"))
+          return url;
+        if (url.startsWith("x")) {
+          let hex = url.slice(1);
+          let str = "";
+          for (let i = 0; i < hex.length; i += 2) {
+            str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+          }
+          if (str.startsWith("https://cbhodgwaazmjszkujrti.supabase.co"))
+            return str;
+        }
+        return url;
+      }
+      async function renderAllTables() {
+        const container = document.getElementById("allTablesContainer");
+        container.innerHTML = "";
+        for (const tbl of TABLES) {
+          const { data, error } = await supabaseClient
+            .from(tbl.name)
+            .select("*");
+          let html = `<div class="mb-10">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xl font-semibold text-pmcPurple">${tbl.label}</h3>
+            <button class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition" onclick="exportTableToExcel('${tbl.name}')">Export to Excel</button>
+          </div>`;
+          if (error) {
+            html += `<div class="text-red-500 mb-4">Error loading data: ${error.message}</div></div>`;
+            container.innerHTML += html;
+            continue;
+          }
+          if (!data || data.length === 0) {
+            html += `<div class="text-gray-500 mb-4">No records found.</div></div>`;
+            container.innerHTML += html;
+            continue;
+          }
+          // Table headers (dynamic)
+          const headers = Object.keys(data[0]);
+          html += `<div class="overflow-x-auto"><table id="${tbl.name}-table" class="min-w-full bg-white border border-gray-200 rounded-lg shadow mb-2">
+          <thead><tr>`;
+          for (const h of headers) {
+            html += `<th class="py-2 px-4 bg-pmcPurple text-white">${h}</th>`;
+          }
+          html += `</tr></thead><tbody>`;
+          for (const row of data) {
+            html += "<tr>";
+            for (const h of headers) {
+              let cell = row[h];
+              if (typeof cell === "string" && cell.startsWith("http")) {
+                cell = `<a href="${decodeHexUrl(
+                  cell
+                )}" target="_blank" class="text-blue-600 underline">View</a>`;
+              }
+              html += `<td class="py-2 px-4">${cell || ""}</td>`;
+            }
+            html += "</tr>";
+          }
+          html += "</tbody></table></div></div>";
+          container.innerHTML += html;
+        }
+      }
+      window.exportTableToExcel = function (tableName) {
+        const table = document.getElementById(tableName + "-table");
+        if (!table) return;
+        const wb = XLSX.utils.table_to_book(table, { sheet: tableName });
+        XLSX.writeFile(wb, tableName + ".xlsx");
+      };
+      window.addEventListener("DOMContentLoaded", renderAllTables);
+    </script>
+    <!-- Navigation Buttons -->
+    <div class="fixed bottom-6 right-6 flex gap-3 z-50">
+      <button
+        onclick="history.back()"
+        aria-label="Back"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition"
+      >
+        &#8592;
+      </button>
+      <button
+        onclick="history.forward()"
+        aria-label="Forward"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition"
+      >
+        &#8594;
+      </button>
+    </div>
+  </body>
+</html>

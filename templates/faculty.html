@@ -1,0 +1,168 @@
+</body>
+<!-- Navigation Buttons -->
+<div class="fixed bottom-6 right-6 flex gap-3 z-50">
+    <button onclick="history.back()" aria-label="Back"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+        &#8592;
+    </button>
+    <button onclick="history.forward()" aria-label="Forward"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+        &#8594;
+    </button>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMC Tech Faculty</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pmcPurple: '#6a2c91',
+                        pmcPurpleDark: '#501e73',
+                        pmcBg: '#f6f4f8',
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-pmcPurple text-white flex justify-between items-center px-6 py-3 shadow-md">
+        <div class="flex items-center">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+                alt="PMC Logo" class="h-12 rounded shadow-md">
+        </div>
+        <div class="flex items-center gap-2 bg-white/70 px-3 py-1 rounded-lg shadow">
+            <span class="font-bold text-lg text-pmcPurple">Username</span>
+            <span
+                class="user-icon flex items-center justify-center bg-purple-100 rounded-full p-1 shadow border border-purple-700">
+                <img src="/static/img/person-circle.svg" alt="person-circle" height="28" width="28"
+                    class="min-w-[28px] min-h-[28px]" />
+            </span>
+            <!-- Message Icon for Messaging -->
+            <button onclick="openMessagingModal()" aria-label="Messages" class="relative focus:outline-none ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8 text-pmcPurple hover:text-blue-400 transition">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M7.5 8.25h9m-9 3.75h6m-10.125 6.375V6.75A2.25 2.25 0 0 1 5.625 4.5h12.75a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25H6.75l-4.5 4.5z" />
+                </svg>
+            </button>
+            <!-- Messaging Modal -->
+            <div id="messagingModal"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+                <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                    <button onclick="closeMessagingModal()"
+                        class="absolute top-2 right-2 text-gray-400 hover:text-pmcPurple text-2xl font-bold">&times;</button>
+                    <h2 class="text-xl font-bold text-pmcPurple mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 inline-block">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7.5 8.25h9m-9 3.75h6m-10.125 6.375V6.75A2.25 2.25 0 0 1 5.625 4.5h12.75a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25H6.75l-4.5 4.5z" />
+                        </svg>
+                        Messages
+                    </h2>
+                    <div id="messageList" class="h-48 overflow-y-auto border rounded p-2 mb-4 bg-gray-50"></div>
+                    <div class="flex gap-2">
+                        <input id="messageInput" type="text"
+                            class="flex-1 border border-pmcPurple rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pmcPurple text-black"
+                            placeholder="Type your message..." onkeydown="if(event.key==='Enter'){sendMessage()}" />
+                        <button onclick="sendMessage()"
+                            class="bg-pmcPurple hover:bg-pmcPurpleDark text-white px-4 py-2 rounded font-semibold">Send</button>
+                    </div>
+                </div>
+            </div>
+            <script src="/static/javascript/messaging.js"></script>
+        </div>
+    </header>
+
+    <!-- Main Form -->
+    <main class="min-h-screen bg-pmcBg flex flex-col items-center justify-center py-12">
+        <form id="facultyForm" class="bg-white rounded-xl shadow-lg px-8 py-8 flex flex-col gap-6 w-full max-w-lg">
+            <h2 class="text-2xl font-bold text-pmcPurple text-center mb-2">Faculty Form</h2>
+            <select name="department" required
+                class="p-3 text-base rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pmcPurple min-w-full">
+                <option value="" disabled selected>Select Department</option>
+                <option value="AERO">AERO</option>
+                <option value="AIDS">AIDS</option>
+                <option value="AIML">AIML</option>
+                <option value="CHEM">CHEM</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="CSBS">CSBS</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="IT">IT</option>
+                <option value="MBA">MBA</option>
+                <option value="MCO">MCO</option>
+                <option value="MCA">MCA</option>
+                <option value="MECH">MECH</option>
+                <option value="S&H">S&H</option>
+            </select>
+            <select name="Forms" required
+                class="p-3 text-base rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pmcPurple min-w-full">
+                <option value="" disabled selected>Forms</option>
+                <option value="1">1.Students Performence in Traning & Placement Member</option>
+                <option value="2">2.Class Advisor </option>
+                <option value="3">3.Faculty Information & Contribution Member </option>
+                <option value="4">4.Course Outcome & Program Outcome Member(Exam Cell)</option>
+                <option value="5">5.Continuous Improment Member(Program Member)</option>
+                <option value="6">6.Teaching & Learning Process member(IQAC) </option>
+                <option value="7">7.Student Support System Member(Discipline & Extra Curricular) </option>
+                <option value="8">8.Facilities & Technical Support Member(Lab Member)</option>
+            </select>
+            <button type="submit"
+                class="bg-pmcPurple hover:bg-pmcPurpleDark text-white font-semibold py-3 rounded-lg transition-colors duration-200 shadow">Submit</button>
+        </form>
+    </main>
+    <script>
+        document.getElementById('facultyForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Get selected department and form
+            var dept = this.department.value;
+            var form = this.Forms.value;
+            var formText = this.Forms.options[this.Forms.selectedIndex].text;
+            // Store in localStorage for use in faculty forms
+            localStorage.setItem('selectedDept', dept);
+            localStorage.setItem('selectedPortfolio', formText);
+            // Redirect to the correct form page
+            if (dept && form === '1') {
+                window.location.href = 'faculty-form1.html';
+            }
+            if (dept && form === '2') {
+                window.location.href = 'faculty-form2.html';
+            }
+            if (dept && form === '3') {
+                window.location.href = 'faculty-form3.html';
+            }
+            if (dept && form === '4') {
+                window.location.href = 'faculty-form4.html';
+            }
+            if (dept && form === '5') {
+                window.location.href = 'faculty-form5.html';
+            }
+            if (dept && form === '6') {
+                window.location.href = 'faculty-form6.html';
+            }
+            if (dept && form === '7') {
+                window.location.href = 'faculty-form7.html';
+            }
+            if (dept && form === '8') {
+                window.location.href = 'faculty-form8.html';
+            }
+            // else: do nothing or add logic for other forms
+        });
+    </script>
+
+    <script src="/javascript/faculty.js"></script>
+</body>
+
+</html>

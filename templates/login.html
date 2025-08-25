@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMC Tech Login</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pmcPurple: '#6a2c91',
+                        pmcPurpleDark: '#501e73',
+                        pmcBg: '#f6f4f8',
+                    },
+                },
+            },
+        }
+    </script>
+    <script src="/javascript/script.js" defer></script>
+
+    <script>
+        // Role-based login redirect
+        let selectedRole = null;
+        function setRole(role) {
+            selectedRole = role;
+            document.getElementById('login-title').textContent = `LOGIN - ${role}`;
+        }
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            pwd.type = pwd.type === 'password' ? 'text' : 'password';
+        }
+        window.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('login-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!selectedRole) {
+                    alert('Please select a role before logging in.');
+                    return;
+                }
+                if (selectedRole === 'MANAGEMENT') {
+                    window.location.href = 'management.html';
+                } else if (selectedRole === 'PRINCIPAL') {
+                    window.location.href = 'principal.html';
+                } else if (selectedRole === 'IQAC') {
+                    window.location.href = 'iqac.html';
+                } else if (selectedRole === 'HOD') {
+                    window.location.href = 'hod.html';
+                } else if (selectedRole === 'FACULTY') {
+                    window.location.href = 'faculty.html';
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-pmcBg min-h-screen flex flex-col items-center justify-center">
+
+    <!-- Logo -->
+    <div class="flex flex-col items-center mt-8 mb-4">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="PMC Tech Logo" class="h-16 md:h-20 mb-2 rounded shadow">
+        <h1 class="text-2xl md:text-3xl font-bold text-pmcPurple text-center leading-tight">Er. PERUMAL
+            MANIMEKALAI<br>COLLEGE OF ENGINEERING</h1>
+        <h2 class="text-lg text-pmcPurpleDark font-semibold text-center">(An Autonomous Institution)</h2>
+    </div>
+
+    <!-- Login Form -->
+    <div class="bg-white rounded-xl shadow-lg px-8 py-8 w-full max-w-md flex flex-col items-center">
+        <h2 id="login-title" class="text-2xl font-bold text-pmcPurple mb-6">LOGIN</h2>
+        <div class="flex flex-row flex-wrap gap-4 justify-center mb-8 w-full">
+            <button type="button" onclick="setRole('MANAGEMENT')"
+                class="px-6 py-3 rounded-lg font-semibold bg-pmcPurple text-white hover:bg-orange-500 transition w-36 shadow">Management</button>
+            <button type="button" onclick="setRole('PRINCIPAL')"
+                class="px-6 py-3 rounded-lg font-semibold bg-pmcPurple text-white hover:bg-orange-500 transition w-36 shadow">Principal</button>
+            <button type="button" onclick="setRole('IQAC')"
+                class="px-6 py-3 rounded-lg font-semibold bg-pmcPurple text-white hover:bg-orange-500 transition w-36 shadow">IQAC</button>
+            <button type="button" onclick="setRole('HOD')"
+                class="px-6 py-3 rounded-lg font-semibold bg-pmcPurple text-white hover:bg-orange-500 transition w-36 shadow">HOD</button>
+            <button type="button" onclick="setRole('FACULTY')"
+                class="px-6 py-3 rounded-lg font-semibold bg-pmcPurple text-white hover:bg-orange-500 transition w-36 shadow">Faculty</button>
+        </div>
+        <form id="login-form" class="flex flex-col gap-4 w-full">
+            <input type="email" id="email" placeholder="Enter your email" required
+                class="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple">
+            <div class="relative">
+                <input type="password" placeholder="Password" id="password" required
+                    class="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple w-full pr-10">
+                <span
+                    class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-400 hover:text-pmcPurple"
+                    onclick="togglePassword()">👁</span>
+            </div>
+            <button type="submit"
+                class="bg-pmcPurple hover:bg-green-500 text-white font-semibold py-3 rounded-lg transition-colors duration-200 shadow">Login</button>
+        </form>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="fixed bottom-6 right-6 flex gap-3 z-50">
+        <button onclick="history.back()" aria-label="Back"
+            class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+            &#8592;
+        </button>
+        <button onclick="history.forward()" aria-label="Forward"
+            class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+            &#8594;
+        </button>
+    </div>
+</body>
+
+</html>

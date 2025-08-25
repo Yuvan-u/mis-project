@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Faculty - PMC Tech</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pmcPurple: '#6f3d91',
+            pmcPurpleDark: '#542c6f',
+            pmcBg: '#f8f7f9',
+          },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-pmcBg min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-pmcPurple text-white shadow-md">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
+      <a href="#" class="flex items-center">
+        <img
+          src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="PMC Logo" class="h-12 mr-4 rounded shadow">
+      </a>
+      <ul class="flex items-center gap-6 text-base font-medium">
+        <li><a href="hod.html" class="hover:underline">Home</a></li>
+        <li><a href="#" class="underline">Add Faculty</a></li>
+        <li><a href="#">Username</a></li>
+        <li><span class="text-2xl">👤</span></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Form -->
+  <div class="flex justify-center items-center w-full px-2 mt-12">
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-3xl flex flex-col md:flex-row gap-8">
+      <form id="facultyAddForm" class="flex-1 flex flex-col gap-4">
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <label class="md:w-1/3 font-medium text-pmcPurple">Name :</label>
+          <input type="text" id="name" name="Name"
+            class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple"
+            placeholder="Enter Name" required>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <label class="md:w-1/3 font-medium text-pmcPurple">Email ID :</label>
+          <input type="email" id="email" name="Email"
+            class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple"
+            placeholder="Enter Email" required>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <label class="md:w-1/3 font-medium text-pmcPurple">Department :</label>
+          <select id="department" name="Department" required
+            class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple">
+            <option value="" disabled selected>Select Department</option>
+            <option value="AERO">AERO</option>
+            <option value="AIDS">AIDS</option>
+            <option value="AIML">AIML</option>
+            <option value="CHEM">CHEM</option>
+            <option value="CIVIL">CIVIL</option>
+            <option value="CSBS">CSBS</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="IT">IT</option>
+            <option value="MBA">MBA</option>
+            <option value="MCA">MCA</option>
+            <option value="MCO">MCO</option>
+            <option value="MECH">MECH</option>
+            <option value="S&H">S&H</option>
+          </select>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <label class="md:w-1/3 font-medium text-pmcPurple">Username :</label>
+          <input type="text" id="username" name="Username"
+            class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple"
+            placeholder="Enter Username" required>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-4">
+          <label class="md:w-1/3 font-medium text-pmcPurple">Password :</label>
+          <input type="password" id="password" name="Password"
+            class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pmcPurple"
+            placeholder="Enter Password" required>
+        </div>
+        <div class="flex justify-center mt-6">
+          <button type="submit"
+            class="bg-pmcPurple hover:bg-pmcPurpleDark text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow">Submit</button>
+        </div>
+      </form>
+
+      <!-- Image Upload -->
+      <div class="flex flex-col items-center justify-center">
+        <label
+          class="w-48 h-48 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer relative group"
+          for="imageUpload">
+          <input type="file" id="imageUpload" accept="image/*" hidden required>
+          <div class="upload-text absolute text-center text-gray-400 group-hover:text-pmcPurple pointer-events-none">
+            Upload Image</div>
+          <img id="previewImage" class="w-full h-full object-cover hidden" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Preview & Supabase Submit Script -->
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+  <script>
+    const imageUpload = document.getElementById('imageUpload');
+    const previewImage = document.getElementById('previewImage');
+    const uploadText = document.querySelector('.upload-text');
+
+    imageUpload.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImage.src = e.target.result;
+          previewImage.classList.remove('hidden');
+          uploadText.style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Supabase client
+    const supabaseClient = window.supabase.createClient(
+      "https://cbhodgwaazmjszkujrti.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiaG9kZ3dhYXptanN6a3VqcnRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2NzY4NzEsImV4cCI6MjA3MTI1Mjg3MX0.sBRdfiWJJmZtLWsHCcNyxm1VcwkGwZWsIeeMlS49XTU"
+    );
+
+    // Upload image to Supabase Storage
+    async function uploadImageToStorage(file, path) {
+      if (!file) return null;
+
+      console.log("Uploading file:", file.name, "to path:", path);
+      const bucket = "Faculty";
+
+      const { data, error } = await supabaseClient.storage.from(bucket).upload(path, file, { upsert: true });
+
+      if (error) {
+        console.error("Upload error:", error.message);
+        alert("Image upload failed: " + error.message);
+        throw error;
+      }
+
+      const { data: publicUrlData } = supabaseClient.storage.from(bucket).getPublicUrl(path);
+      console.log("Image uploaded! Public URL:", publicUrlData.publicUrl);
+
+      return publicUrlData.publicUrl;
+    }
+
+    // Handle form submit
+    const facultyAddForm = document.getElementById('facultyAddForm');
+    if (facultyAddForm) {
+      facultyAddForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const form = e.target;
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const department = document.getElementById("department").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const imageFile = document.getElementById("imageUpload").files[0] || null;
+
+        const ts = Date.now();
+        let imageUrl = null;
+
+        try {
+          if (imageFile) {
+            imageUrl = await uploadImageToStorage(imageFile, `faculty_${ts}_${imageFile.name}`);
+          }
+        } catch (uploadErr) {
+          console.error("Upload failed:", uploadErr);
+          alert("Image was not uploaded to the bucket. Please try again.");
+          return;
+        }
+
+        // Insert row into Supabase table
+        const row = {
+          "Name": name,
+          "Email ID": email,
+          "Department": department,
+          "Username": username,
+          "Password": password,
+          "Upload Image": imageUrl
+        };
+
+        const { data, error } = await supabaseClient
+          .from("Faculty")
+          .insert([row]);
+
+        if (error) {
+          console.error("DB Insert error:", error.message);
+          alert("Submission failed: " + error.message);
+        } else {
+          alert("Faculty added successfully!");
+          form.reset();
+          previewImage.classList.add("hidden");
+          uploadText.style.display = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

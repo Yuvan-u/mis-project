@@ -1,0 +1,181 @@
+</div>
+<!-- Navigation Buttons -->
+<div class="fixed bottom-6 right-6 flex gap-3 z-50">
+    <button onclick="history.back()" aria-label="Back"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+        &#8592;
+    </button>
+    <button onclick="history.forward()" aria-label="Forward"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+        &#8594;
+    </button>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty List - PMC Tech</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pmcPurple: '#7b3fa1',
+                        pmcPurpleDark: '#542c6f',
+                        pmcBg: '#f8f9fa',
+                        pmcGreen: '#28a745',
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-pmcBg min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-pmcPurple text-white shadow-md">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+            <a href="#" class="flex items-center">
+                <img src="https://media.licdn.com/dms/image/v2/C4D0BAQEmuLph_OtGfQ/company-logo_200_200/company-logo_200_200/0/1657864090001/pmctechengg_logo?e=2147483647&v=beta&t=O3qeRvsCoQXSGzKR-PegjzkQ_1tiDxJRy915lYQCQuA"
+                    alt="PMC Tech Logo" class="h-12 mr-4 rounded shadow">
+            </a>
+            <ul class="flex items-center gap-6 text-base font-medium">
+                <li><a href="#" class="border-b-2 border-white pb-1">Faculty List</a></li>
+                <li><a href="hod-workdone.html" class="hover:underline">Work Done</a></li>
+                <li><a href="faculty-add.html" class="hover:underline">Add Faculty</a></li>
+                <li><span class="font-bold">Username</span></li>
+                <li><span class="text-2xl">👤</span></li>
+                <!-- Bell Icon for Messaging -->
+                <li>
+                    <button onclick="openMessagingModal()" aria-label="Messages" class="relative focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-8 h-8 text-white hover:text-blue-400 transition">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7.5 8.25h9m-9 3.75h6m-10.125 6.375V6.75A2.25 2.25 0 0 1 5.625 4.5h12.75a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25H6.75l-4.5 4.5z" />
+                        </svg>
+                    </button>
+                </li>
+                <!-- Messaging Modal -->
+                <div id="messagingModal"
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+                    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                        <button onclick="closeMessagingModal()"
+                            class="absolute top-2 right-2 text-gray-400 hover:text-pmcPurple text-2xl font-bold">&times;</button>
+                        <h2 class="text-xl font-bold text-pmcPurple mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 inline-block">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.857 17.082a2.25 2.25 0 01-4.07 0M21 19.5a1.5 1.5 0 01-1.5-1.5V11a7.5 7.5 0 10-15 0v7a1.5 1.5 0 01-1.5 1.5h18z" />
+                            </svg>
+                            Messages
+                        </h2>
+                        <div id="messageList" class="h-48 overflow-y-auto border rounded p-2 mb-4 bg-gray-50"></div>
+                        <div class="flex gap-2">
+                            <input id="messageInput" type="text"
+                                class="flex-1 border border-pmcPurple rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pmcPurple text-black"
+                                placeholder="Type your message..." onkeydown="if(event.key==='Enter'){sendMessage()}" />
+                            <button onclick="sendMessage()"
+                                class="bg-pmcPurple hover:bg-pmcPurpleDark text-white px-4 py-2 rounded font-semibold">Send</button>
+                        </div>
+                    </div>
+                </div>
+                <script src="/static/javascript/messaging.js"></script>
+                <!-- Modern Notification Bell Icon for Messaging -->
+                <li>
+                    <button onclick="openMessagingModal()" aria-label="Messages"
+                        class="relative focus:outline-none group">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-8 h-8 text-white group-hover:text-yellow-400 transition" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9v5.586l-1.707 1.707A1 1 0 0 0 4 18h16a1 1 0 0 0 .707-1.707L19 14.586V9c0-3.87-3.13-7-7-7zm0 20a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22z" />
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="max-w-6xl mx-auto mt-8 px-4">
+        <!-- Department Display -->
+        <h5 id="departmentName" class="text-lg font-semibold text-pmcPurple mb-4">Department:</h5>
+        <!-- Search and Add Button -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+            <input type="text"
+                class="p-3 border border-gray-300 rounded-md w-full max-w-md focus:outline-none focus:ring-2 focus:ring-pmcPurple"
+                placeholder="Search faculty">
+            <a href="faculty-add.html" id="addFacultyBtn"
+                class="bg-pmcGreen hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition whitespace-nowrap mt-2 md:mt-0">+
+                Add Faculty</a>
+        </div>
+        <!-- Faculty Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="facultyGrid">
+            <!-- Example Faculty Cards -->
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">basker</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+            <div class="flex flex-col items-center bg-white rounded-xl shadow p-4 faculty-card">
+                <a href="faculty-details.html"><img
+                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Faculty" class="w-28 h-28 object-cover rounded-full shadow hover:scale-105 transition"></a>
+                <div class="faculty-name mt-3 font-medium text-pmcPurple">Faculty Name</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get Department from URL (e.g. faculty-list.html?dept=Computer%20Science)
+        const params = new URLSearchParams(window.location.search);
+        const dept = params.get("dept");
+        if (dept) {
+            document.getElementById("departmentName").textContent = "Department: " + dept;
+        }
+    </script>
+</body>
+
+</html>

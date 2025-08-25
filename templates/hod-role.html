@@ -1,0 +1,60 @@
+</body>
+<!-- Navigation Buttons -->
+<div class="fixed bottom-6 right-6 flex gap-3 z-50">
+  <button onclick="history.back()" aria-label="Back"
+    class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+    &#8592;
+  </button>
+  <button onclick="history.forward()" aria-label="Forward"
+    class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+    &#8594;
+  </button>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOD Role Selection - PMC Tech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pmcPurple: '#6a2c91',
+            pmcPurpleDark: '#501e73',
+            pmcBg: '#f6f4f8',
+          },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-pmcBg min-h-screen flex flex-col items-center justify-center">
+  <div class="bg-white rounded-xl shadow-lg px-8 py-10 w-full max-w-md flex flex-col items-center">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+      alt="PMC Logo" class="h-16 mb-4 rounded shadow">
+    <h2 class="text-2xl font-bold text-pmcPurple mb-6 text-center">Welcome, HOD!<br>Select your role to continue</h2>
+    <div class="flex flex-col gap-4 w-full">
+      <button onclick="window.location.href='hod.html?as=hod'"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white font-semibold py-3 rounded-lg transition-colors duration-200 shadow w-full">Continue
+        as HOD</button>
+      <button onclick="window.location.href='faculty.html'"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white font-semibold py-3 rounded-lg transition-colors duration-200 shadow w-full">Continue
+        as Faculty</button>
+    </div>
+    <!-- Modern Notification Bell Icon for Messaging -->
+    <button onclick="openMessagingModal()" aria-label="Messages" class="relative focus:outline-none group mt-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-pmcPurple group-hover:text-yellow-400 transition"
+        fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M12 2C8.13 2 5 5.13 5 9v5.586l-1.707 1.707A1 1 0 0 0 4 18h16a1 1 0 0 0 .707-1.707L19 14.586V9c0-3.87-3.13-7-7-7zm0 20a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22z" />
+      </svg>
+    </button>
+  </div>
+</body>
+
+</html>

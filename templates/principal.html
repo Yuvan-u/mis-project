@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IQAC Dashboard - PMC Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              pmcPurple: "#6a2c91",
+              pmcPurpleDark: "#501e73",
+              pmcBg: "#f6f4f8",
+              pmcGreen: "#28a745",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-pmcBg min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-[#7b3fa1] text-white shadow-md">
+      <div
+        class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3"
+      >
+        <a href="#" class="flex items-center">
+          <img
+            src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="PMC Logo"
+            class="h-12 mr-4 rounded shadow"
+          />
+        </a>
+        <ul class="flex items-center gap-6 text-base font-medium">
+          <li>
+            <a href="#" class="border-b-2 border-white pb-1">Department List</a>
+          </li>
+          <li>
+            <a href="iqac-workdone.html" class="hover:underline">Work Done</a>
+          </li>
+          <li><span class="font-bold">Username</span></li>
+          <li><span class="text-2xl">👤</span></li>
+          <!-- Bell Icon for Messaging -->
+          <li>
+            <button
+              onclick="openMessagingModal()"
+              aria-label="Messages"
+              class="relative focus:outline-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8 h-8 text-white hover:text-blue-400 transition"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.5 8.25h9m-9 3.75h6m-10.125 6.375V6.75A2.25 2.25 0 0 1 5.625 4.5h12.75a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25H6.75l-4.5 4.5z"
+                />
+              </svg>
+            </button>
+          </li>
+          <!-- Messaging Modal -->
+          <div
+            id="messagingModal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden"
+          >
+            <div
+              class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative"
+            >
+              <button
+                onclick="closeMessagingModal()"
+                class="absolute top-2 right-2 text-gray-400 hover:text-pmcPurple text-2xl font-bold"
+              >
+                &times;
+              </button>
+              <h2
+                class="text-xl font-bold text-pmcPurple mb-4 flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 inline-block"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.857 17.082a2.25 2.25 0 01-4.07 0M21 19.5a1.5 1.5 0 01-1.5-1.5V11a7.5 7.5 0 10-15 0v7a1.5 1.5 0 01-1.5 1.5h18z"
+                  />
+                </svg>
+                Messages
+              </h2>
+              <div
+                id="messageList"
+                class="h-48 overflow-y-auto border rounded p-2 mb-4 bg-gray-50"
+              ></div>
+              <div class="flex gap-2">
+                <input
+                  id="messageInput"
+                  type="text"
+                  class="flex-1 border border-pmcPurple rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pmcPurple text-black"
+                  placeholder="Type your message..."
+                  onkeydown="if(event.key==='Enter'){sendMessage()}"
+                />
+                <button
+                  onclick="sendMessage()"
+                  class="bg-pmcPurple hover:bg-pmcPurpleDark text-white px-4 py-2 rounded font-semibold"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+          <script src="/static/javascript/messaging.js"></script>
+        </ul>
+      </div>
+    </nav>
+    <!-- HOD List Content (same as faculty-list, but for HODs) -->
+    <div class="max-w-6xl mx-auto mt-8 px-4">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6"
+      >
+        <input
+          id="deptSearch"
+          type="text"
+          class="p-3 border border-gray-300 rounded-md w-full max-w-md focus:outline-none focus:ring-2 focus:ring-pmcPurple"
+          placeholder="Search Dept"
+          oninput="filterDepartments()"
+        />
+        <script>
+          function filterDepartments() {
+            const search = document
+              .getElementById("deptSearch")
+              .value.toLowerCase();
+            document.querySelectorAll(".department-card").forEach((card) => {
+              const name = card
+                .querySelector(".department-name")
+                .textContent.toLowerCase();
+              card.style.display = name.includes(search) ? "" : "none";
+            });
+          }
+        </script>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Department Cards -->
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/AERO.PNG"
+              alt="AERO"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            AERO
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/AIDS.PNG"
+              alt="AIDS"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            AIDS
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/AIML.PNG"
+              alt="AIML"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            AIML
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/CHEM.PNG"
+              alt="CHEM"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            CHEM
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/CIVIL.PNG"
+              alt="CIVIL"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            CIVIL
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/CSBS.PNG"
+              alt="CSBS"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            CSBS
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/CSE.PNG"
+              alt="CSE"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">CSE</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/ECE.PNG"
+              alt="ECE"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">ECE</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/EEE.PNG"
+              alt="EEE"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">EEE</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/IT.PNG"
+              alt="IT"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">IT</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/MBA.PNG"
+              alt="MBA"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">MBA</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/MCO.PNG"
+              alt="MCO"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">MCO</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/MCA.PNG"
+              alt="MCA"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">MCA</div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/MECH.PNG"
+              alt="MECH"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            MECH
+          </div>
+        </a>
+        <a
+          href="hod.html?as=hod"
+          class="department-card flex flex-col items-center bg-white rounded-xl shadow p-4 hover:shadow-lg transition cursor-pointer"
+        >
+          <div
+            class="w-28 h-28 flex items-center justify-center rounded-full bg-pmcBg shadow mb-2"
+          >
+            <img
+              src="../static/img/S&H.PNG"
+              alt="S&H"
+              class="w-24 h-24 object-cover rounded-full shadow hover:scale-105 transition"
+            />
+          </div>
+          <div class="department-name mt-2 font-medium text-pmcPurple">
+            S&amp;H
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- Navigation Buttons -->
+    <div class="fixed bottom-6 right-6 flex gap-3 z-50">
+      <button
+        onclick="history.back()"
+        aria-label="Back"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition"
+      >
+        &#8592;
+      </button>
+      <button
+        onclick="history.forward()"
+        aria-label="Forward"
+        class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition"
+      >
+        &#8594;
+      </button>
+    </div>
+  </body>
+</html>

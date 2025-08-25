@@ -1,0 +1,331 @@
+</main>
+<!-- Navigation Buttons -->
+<div class="fixed bottom-6 right-6 flex gap-3 z-50">
+  <button onclick="history.back()" aria-label="Back"
+    class="bg-purple-700 hover:bg-purple-900 text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+    &#8592;
+  </button>
+  <button onclick="history.forward()" aria-label="Forward"
+    class="bg-purple-700 hover:bg-purple-900 text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+    &#8594;
+  </button>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HOD Work Done</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small helpers for consistent sizes */
+    .profile-size {
+      width: 150px;
+      height: 150px;
+    }
+
+    .card-shadow {
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-purple-700 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img
+          src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="PMC Tech Logo" class="h-12 mr-4 rounded shadow bg-white p-1" />
+        <nav class="hidden sm:flex gap-6 ml-6 text-sm font-medium">
+          <a class="opacity-90 hover:opacity-100">Home</a>
+          <a class="underline decoration-2 underline-offset-4">Work done</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="font-semibold">Username</span>
+        <svg class="w-7 h-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M2.458 20C3.732 16.943 6.737 15 12 15s8.268 1.943 9.542 5" />
+        </svg>
+        <!-- Modern Notification Bell Icon for Messaging -->
+        <button onclick="openMessagingModal()" aria-label="Messages" class="relative focus:outline-none group ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white group-hover:text-yellow-400 transition"
+            fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9v5.586l-1.707 1.707A1 1 0 0 0 4 18h16a1 1 0 0 0 .707-1.707L19 14.586V9c0-3.87-3.13-7-7-7zm0 20a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Profile + inputs -->
+    <section class="bg-white rounded-xl card-shadow p-6 mb-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <!-- profile icon / preview -->
+        <div class="flex-shrink-0 text-center">
+          <input id="profileImage" type="file" accept="image/*" class="hidden" />
+          <div id="profilePreview" class="relative inline-block">
+            <button id="profileBtn" type="button"
+              class="flex items-center justify-center rounded-full bg-purple-50 border border-purple-200 profile-size overflow-hidden"
+              aria-label="Select profile image">
+              <!-- default SVG person-circle -->
+              <svg id="defaultIcon" class="w-28 h-28 text-purple-600" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.4" opacity="0.95" />
+                <path d="M4 20c1.5-3.6 5-6 8-6s6.5 2.4 8 6" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+              </svg>
+              <img id="profileImgTag" src="" alt="profile preview" class="hidden w-full h-full object-cover" />
+            </button>
+            <div class="text-xs text-gray-500 mt-2">Click icon to upload</div>
+          </div>
+        </div>
+
+        <!-- inline inputs -->
+        <div class="flex-1 w-full">
+          <div class="flex flex-col md:flex-row items-center md:items-end gap-6">
+            <div class="flex-1">
+              <label for="name" class="text-sm font-medium text-gray-600">Name</label>
+              <input id="name" type="text" placeholder="Enter name"
+                class="mt-1 block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-purple-300" />
+            </div>
+            <div class="flex-1">
+              <label for="dept" class="text-sm font-medium text-gray-600">Department</label>
+              <input id="dept" type="text" placeholder="Enter department"
+                class="mt-1 block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-purple-300" />
+            </div>
+            <div class="flex-1">
+              <label for="email" class="text-sm font-medium text-gray-600">Email ID</label>
+              <input id="email" type="email" placeholder="Enter email"
+                class="mt-1 block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-purple-300" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="card-shadow rounded-xl overflow-hidden">
+      <div class="bg-white p-4">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50">
+            <tr class="text-left text-gray-700">
+              <th class="p-4 w-16">S.No</th>
+              <th class="p-4">Name of the form</th>
+              <th class="p-4 w-60">Uploads</th>
+              <th class="p-4 w-40">Status</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y">
+            <!-- row 1 -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 align-top">1</td>
+              <td class="p-4 align-top">Students Performance in Training &amp; Placement Member</td>
+              <td class="p-4 align-top">
+                <div class="flex items-center gap-3">
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-amber-500/90 text-white px-3 py-1.5 text-xs font-medium hover:brightness-95"
+                    aria-label="View">
+                    <!-- eye icon -->
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M2.458 12C3.732 7.943 7.737 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.279 7-9.542 7S3.732 16.057 2.458 12z" />
+                    </svg>
+                    <span>View</span>
+                  </button>
+
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-purple-600 text-white px-3 py-1.5 text-xs font-medium hover:brightness-95"
+                    aria-label="Download">
+                    <!-- download icon -->
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    <span>Download</span>
+                  </button>
+                </div>
+              </td>
+              <td class="p-4 align-top">
+                <button
+                  class="verify-btn inline-flex items-center justify-center rounded-full px-4 py-1.5 border border-gray-200 text-gray-600 text-sm"
+                  data-verified="false">Verify</button>
+              </td>
+            </tr>
+
+            <!-- row 2 -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 align-top">2</td>
+              <td class="p-4 align-top">Class Advisor</td>
+              <td class="p-4 align-top">
+                <div class="flex items-center gap-3">
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-amber-500/90 text-white px-3 py-1.5 text-xs font-medium">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M2.458 12C3.732 7.943 7.737 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.279 7-9.542 7S3.732 16.057 2.458 12z" />
+                    </svg>
+                    <span>View</span>
+                  </button>
+
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-purple-600 text-white px-3 py-1.5 text-xs font-medium">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    <span>Download</span>
+                  </button>
+                </div>
+              </td>
+              <td class="p-4 align-top">
+                <button
+                  class="verify-btn inline-flex items-center justify-center rounded-full px-4 py-1.5 border border-gray-200 text-gray-600 text-sm"
+                  data-verified="false">Verify</button>
+              </td>
+            </tr>
+
+            <!-- row 3 -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 align-top">3</td>
+              <td class="p-4 align-top">Faculty Information &amp; Contribution Member</td>
+              <td class="p-4 align-top">
+                <div class="flex items-center gap-3">
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-amber-500/90 text-white px-3 py-1.5 text-xs font-medium">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M2.458 12C3.732 7.943 7.737 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.279 7-9.542 7S3.732 16.057 2.458 12z" />
+                    </svg>
+                    <span>View</span>
+                  </button>
+
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-purple-600 text-white px-3 py-1.5 text-xs font-medium">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    <span>Download</span>
+                  </button>
+                </div>
+              </td>
+              <td class="p-4 align-top">
+                <button
+                  class="verify-btn inline-flex items-center justify-center rounded-full px-4 py-1.5 border border-gray-200 text-gray-600 text-sm"
+                  data-verified="false">Verify</button>
+              </td>
+            </tr>
+
+            <!-- row 4 -->
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 align-top">4</td>
+              <td class="p-4 align-top">Continuous Improvement Member (Program Member)</td>
+              <td class="p-4 align-top">
+                <div class="flex items-center gap-3">
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-amber-500/90 text-white px-3 py-1.5 text-xs font-medium">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M2.458 12C3.732 7.943 7.737 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.279 7-9.542 7S3.732 16.057 2.458 12z" />
+                    </svg>
+                    <span>View</span>
+                  </button>
+
+                  <button
+                    class="inline-flex items-center gap-2 rounded-full bg-purple-600 text-white px-3 py-1.5 text-xs font-medium">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    <span>Download</span>
+                  </button>
+                </div>
+              </td>
+              <td class="p-4 align-top">
+                <button
+                  class="verify-btn inline-flex items-center justify-center rounded-full px-4 py-1.5 border border-gray-200 text-gray-600 text-sm"
+                  data-verified="false">Verify</button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // profile preview
+    const profileInput = document.getElementById('profileImage');
+    const profileImgTag = document.getElementById('profileImgTag');
+    const defaultIcon = document.getElementById('defaultIcon');
+    const profileBtn = document.getElementById('profileBtn');
+
+    profileBtn.addEventListener('click', () => profileInput.click());
+    profileInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        profileImgTag.src = ev.target.result;
+        profileImgTag.classList.remove('hidden');
+        defaultIcon.classList.add('hidden');
+      }
+      reader.readAsDataURL(file);
+    });
+
+    // verify toggle
+    document.querySelectorAll('.verify-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const verified = this.getAttribute('data-verified') === 'true';
+        if (!verified) {
+          this.setAttribute('data-verified', 'true');
+          this.classList.remove('border-gray-200');
+          this.classList.remove('text-gray-600');
+          this.classList.add('bg-green-500', 'text-white', 'border-green-600');
+          this.textContent = 'Verified';
+        } else {
+          this.setAttribute('data-verified', 'false');
+          this.classList.remove('bg-green-500', 'text-white', 'border-green-600');
+          this.classList.add('border-gray-200', 'text-gray-600');
+          this.textContent = 'Verify';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

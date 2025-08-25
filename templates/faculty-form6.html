@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMC Tech Faculty - Form 6</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-purple-800 text-white flex justify-between items-center px-6 py-3 shadow-md">
+        <div class="flex items-center">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.paY-ha-IpNQJrH2Lz_JZEgHaDG?w=2560&h=1070&rs=1&pid=ImgDetMain&o=7&rm=3" alt="PMC Logo" class="h-12 rounded shadow-md">
+        </div>
+        <div class="flex items-center gap-2 bg-white/70 px-3 py-1 rounded-lg shadow">
+            <span class="font-bold text-lg text-purple-800">Username</span>
+            <span class="user-icon flex items-center justify-center bg-purple-100 rounded-full p-1 shadow border border-purple-700">
+                <img src="/static/img/person-circle.svg" alt="person-circle" height="28" width="28" class="min-w-[28px] min-h-[28px]" />
+            </span>
+        </div>
+    </header>
+    <div class="form-container mx-auto max-w-6xl px-4">
+    <!-- Main Form -->
+    <main>
+        <div class="faculty-form-outer">
+
+            <!-- Direct DB Entry: form1-weekly (now replaces header and daily section) -->
+            
+            <section style="margin: 2rem 0;">
+        <h2 class="text-2xl font-bold text-center text-purple-800 tracking-wide mb-6">6. Teaching & Learning Process Member(IQAC): Weekly</h2>
+        <form id="directDbForm" class="bg-white shadow-lg rounded-xl max-w-5xl mx-auto px-6 py-8 mb-10 border border-purple-200">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Department:</label>
+                    <select name="Department" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option value="AERO">AERO</option>
+                        <option value="AIDS">AIDS</option>
+                        <option value="AIML">AIML</option>
+                        <option value="CHEM">CHEM</option>
+                        <option value="CIVIL">CIVIL</option>
+                        <option value="CSBS">CSBS</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="IT">IT</option>
+                        <option value="MCO">MCO</option>
+                        <option value="MECH">MECH</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Portfolio Name:</label>
+                    <input name="Portfolio Name" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Portfolio Member Name:</label>
+                    <input name="Portfolio Member Name" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Month:</label>
+                    <select name="Month" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Week no:</label>
+                    <input name="Week no" type="number" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Week Starting Date:</label>
+                    <input name="Week Starting Date" type="date" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Week Ending Date:</label>
+                    <input name="Week Ending Date" type="date" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                </div>
+            </div>
+            <div class="w-full border-t border-gray-200 my-6"></div>
+            <!-- 9 status/desc/file blocks -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Repeat for 1 to 9 -->
+                <!-- Block template -->
+                <!-- 1 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">1. Course File Audit Report(2 Faculty) </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_1:</label>
+                    <select name="Status_1" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_1:</label>
+                    <input name="Description_1" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_1:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file1" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">2.Logbook Audit Report(2 Faculty)</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_2:</label>
+                    <select name="Status_2" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_2:</label>
+                    <input name="Description_2" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_2:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file2" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">3.Master Logbook Audit Report</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_3:</label>
+                    <select name="Status_3" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_3:</label>
+                    <input name="Description_3" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_3:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file3" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">4. ERP Entry REport</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_4:</label>
+                    <select name="Status_4" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_4:</label>
+                    <input name="Description_4" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_4:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file4" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">5. Assignments File</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_5:</label>
+                    <select name="Status_5" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_5:</label>
+                    <input name="Description_5" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_5:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file5" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 6 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">6. Innovative Teaching Tools File</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_6:</label>
+                    <select name="Status_6" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_6:</label>
+                    <input name="Description_6" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_6:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file6" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 7 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">7. Dept.Youtube Channel File </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_7:</label>
+                    <select name="Status_7" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_7:</label>
+                    <input name="Description_7" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_7:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file7" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 8 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">8. Google Class Room(3 Faculty)</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_8:</label>
+                    <select name="Status_8" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_8:</label>
+                    <input name="Description_8" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_8:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file8" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+                <!-- 9 -->
+                <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">9. Mentor Book Audit Report(2 Faculty)</div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Status_9:</label>
+                    <select name="Status_9" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                        <option value="" disabled selected>Select</option>
+                        <option>Completed and Updated</option>
+                        <option>Yet to be Completed</option>
+                        <option>Under Process</option>
+                        <option>Not Applicable</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Description_9:</label>
+                    <input name="Description_9" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_9:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                            <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                            <input name="file9" type="file" class="ml-2 hidden" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full border-t border-gray-200 my-6"></div>
+            <button type="submit" class="mt-8 bg-purple-800 hover:from-purple-400 hover:to-orange-500 text-white font-bold py-3 px-10 rounded-xl shadow-lg text-lg tracking-wide transition-all duration-200 mx-auto block">Submit</button>
+        </form>
+            <!-- Direct DB Entry: form4-once in 2 months -->
+            <section style="margin: 2rem 0;">
+                <h2 class="text-2xl font-bold text-center text-purple-800 tracking-wide mb-6">6. Teaching & Learning Process Member(IQAC): Once in 2 Months</h2>
+                <form id="once2MonthForm6" class="bg-white shadow-lg rounded-xl max-w-5xl mx-auto px-6 py-8 mb-10 border border-purple-200">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Department:</label>
+                            <select name="Department" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option value="AERO">AERO</option>
+                                <option value="AIDS">AIDS</option>
+                                <option value="AIML">AIML</option>
+                                <option value="CHEM">CHEM</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="CSBS">CSBS</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="MCO">MCO</option>
+                                <option value="MECH">MECH</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Portfolio Name:</label>
+                            <input name="Portfolio Name" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Portfolio Member Name:</label>
+                            <input name="Portfolio Member Name" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Month:</label>
+                            <select name="Month" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Week no:</label>
+                            <input name="Week no" type="number" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Week Starting Date:</label>
+                            <input name="Week Starting Date" type="date" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Week Ending Date:</label>
+                            <input name="Week Ending Date" type="date" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-gray-200 my-6"></div>
+                    <!-- 4 status/desc/file blocks for once in 2 months form -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">1. Feedback from Alumini File</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_1:</label>
+                            <select name="Status_1" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_1:</label>
+                            <input name="Description_1" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_1:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file1" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">2. Feedback from Parenst File</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_2:</label>
+                            <select name="Status_2" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_2:</label>
+                            <input name="Description_2" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_2:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file2" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 3 -->
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">3. Feedback from Employer File</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_3:</label>
+                            <select name="Status_3" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_3:</label>
+                            <input name="Description_3" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_3:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file3" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 4 -->
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">4. Feedback from Faculty File</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_4:</label>
+                            <select name="Status_4" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_4:</label>
+                            <input name="Description_4" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_4:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file4" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-gray-200 my-6"></div>
+                    <button type="submit" class="mt-8 bg-purple-800 hover:from-purple-400 hover:to-orange-500 text-white font-bold py-3 px-10 rounded-xl shadow-lg text-lg tracking-wide transition-all duration-200 mx-auto block">Submit</button>
+                </form>
+            </section>
+            <!-- Direct DB Entry: form3-once in a semester -->
+            <section style="margin: 2rem 0;">
+                <h2 class="text-2xl font-bold text-center text-purple-800 tracking-wide mb-6">6. Teaching & Learning Process Member(IQAC): Once in a Semester</h2>
+                <form id="semesterForm6" class="bg-white shadow-lg rounded-xl max-w-5xl mx-auto px-6 py-8 mb-10 border border-purple-200">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Department:</label>
+                            <select name="Department" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option value="AERO">AERO</option>
+                                <option value="AIDS">AIDS</option>
+                                <option value="AIML">AIML</option>
+                                <option value="CHEM">CHEM</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="CSBS">CSBS</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="EEE">EEE</option>
+                                <option value="IT">IT</option>
+                                <option value="MCO">MCO</option>
+                                <option value="MECH">MECH</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Portfolio Name:</label>
+                            <input name="Portfolio Name" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Portfolio Member Name:</label>
+                            <input name="Portfolio Member Name" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Month:</label>
+                            <select name="Month" required class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Week no:</label>
+                            <input name="Week no" type="number" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Week Starting Date:</label>
+                            <input name="Week Starting Date" type="date" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Week Ending Date:</label>
+                            <input name="Week Ending Date" type="date" class="rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 px-3 py-2" />
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-gray-200 my-6"></div>
+                    <!-- 3 status/desc/file blocks for once in a semester form -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">1. Internal Audit File</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_1:</label>
+                            <select name="Status_1" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_1:</label>
+                            <input name="Description_1" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_1:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file1" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">2. External Audit File</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_2:</label>
+                            <select name="Status_2" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_2:</label>
+                            <input name="Description_2" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_2:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file2" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <!-- 3 -->
+                        <div class="col-span-1 sm:col-span-2 lg:col-span-4 bg-orange-400 text-white font-bold text-lg rounded-lg px-6 py-2 mb-2 shadow flex items-center">3. Students Satisfaction Survey</div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Status_3:</label>
+                            <select name="Status_3" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2">
+                                <option value="" disabled selected>Select</option>
+                                <option>Completed and Updated</option>
+                                <option>Yet to be Completed</option>
+                                <option>Under Process</option>
+                                <option>Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Description_3:</label>
+                            <input name="Description_3" class="rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 px-3 py-2" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700 mb-1">Upload The Scanned File_3:</label>
+                            <div class="flex items-center gap-2 w-full">
+                                <label class="flex items-center gap-2 cursor-pointer bg-white hover:bg-gray-100 px-3 py-2 rounded-lg border border-gray-300 transition font-medium text-gray-700">
+                                    <span class="inline-flex items-center gap-1">Upload <img src="/static/img/upload.svg" alt="upload" height="20" width="24" class="inline-block align-middle" /></span>
+                                    <input name="file3" type="file" class="ml-2 hidden" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-gray-200 my-6"></div>
+                    <button type="submit" class="mt-8 bg-purple-800 hover:from-purple-400 hover:to-orange-500 text-white font-bold py-3 px-10 rounded-xl shadow-lg text-lg tracking-wide transition-all duration-200 mx-auto block">Submit</button>
+                </form>
+            </section>
+    <!-- Removed: 2. Class Advisor Form: Weekly -->
+                    </main>
+            </section>
+
+        <!-- NEW: Direct DB Entry: form2-once in a month -->
+    <!-- Removed: 2. Class Advisor Form: Once in a Month -->
+        <!-- NEW: Direct DB Entry: form2-weekly -->
+         
+            <!-- ONCE IN A MONTH Section -->
+
+            <!-- ONCE IN A SEMESTER Section -->
+    <!-- Removed: 2. Class Advisor Form: Once in a Semester -->
+        </div>
+    </main>
+
+    </body>
+
+        <script src="https://unpkg.com/@supabase/supabase-js"></script>
+        <script>
+        // All logic after DOMContentLoaded and after Supabase script is loaded
+        window.addEventListener('DOMContentLoaded', function() {
+                // (moved year form logic below)
+            if (window.supabase) {
+                const supabaseClient = window.supabase.createClient(
+                    "https://cbhodgwaazmjszkujrti.supabase.co",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiaG9kZ3dhYXptanN6a3VqcnRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2NzY4NzEsImV4cCI6MjA3MTI1Mjg3MX0.sBRdfiWJJmZtLWsHCcNyxm1VcwkGwZWsIeeMlS49XTU"
+                );
+                // --- FACULTY FORM 6 - WEEKLY LOGIC ---
+                const form6WeeklyForm = document.getElementById('directDbForm');
+                if (form6WeeklyForm) {
+                    form6WeeklyForm.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        const form = e.target;
+                        async function uploadFileToStorage(file, path) {
+                            if (!file) return null;
+                            const bucket = 'form6-files';
+                            const { data, error } = await supabaseClient.storage.from(bucket).upload(path, file, { upsert: true });
+                            if (error) {
+                                window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(error.message);
+                                throw error;
+                            }
+                            const { data: publicUrlData, error: urlError } = supabaseClient.storage.from(bucket).getPublicUrl(path);
+                            if (urlError) {
+                                window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(urlError.message);
+                                throw urlError;
+                            }
+                            return publicUrlData.publicUrl;
+                        }
+
+                        const ts = Date.now();
+                        let fileUrls = Array(9).fill(null);
+                        try {
+                            for (let i = 1; i <= 9; i++) {
+                                const file = form.querySelector(`input[name='file${i}']`)?.files?.[0] || null;
+                                if (file) fileUrls[i-1] = await uploadFileToStorage(file, `file${i}/${ts}_${file.name}`);
+                            }
+                        } catch (uploadErr) {
+                            return;
+                        }
+
+                        const row = {
+                            "Department": form["Department"].value,
+                            "Portfolio Name": form["Portfolio Name"].value,
+                            "Portfolio Member Name": form["Portfolio Member Name"].value,
+                            "Month": form["Month"].value,
+                            "Week no": form["Week no"].value ? parseInt(form["Week no"].value) : null,
+                            "Week Starting Date": form["Week Starting Date"].value || null,
+                            "Week Ending Date": form["Week Ending Date"].value || null,
+                            "Status_1": form["Status_1"].value,
+                            "Description_1": form["Description_1"].value,
+                            "Upload The Scanned File_1": fileUrls[0],
+                            "Status_2": form["Status_2"].value,
+                            "Description_2": form["Description_2"].value,
+                            "Upload The Scanned File_2": fileUrls[1],
+                            "Status_3": form["Status_3"].value,
+                            "Description_3": form["Description_3"].value,
+                            "Upload The Scanned File_3": fileUrls[2],
+                            "Status_4": form["Status_4"].value,
+                            "Description_4": form["Description_4"].value,
+                            "Upload The Scanned File_4": fileUrls[3],
+                            "Status_5": form["Status_5"].value,
+                            "Description_5": form["Description_5"].value,
+                            "Upload The Scanned File_5": fileUrls[4],
+                            "Status_6": form["Status_6"].value,
+                            "Description_6": form["Description_6"].value,
+                            "Upload The Scanned File_6": fileUrls[5],
+                            "Status_7": form["Status_7"].value,
+                            "Description_7": form["Description_7"].value,
+                            "Upload The Scanned File_7": fileUrls[6],
+                            "Status_8": form["Status_8"].value,
+                            "Description_8": form["Description_8"].value,
+                            "Upload The Scanned File_8": fileUrls[7],
+                            "Status_9": form["Status_9"].value,
+                            "Description_9": form["Description_9"].value,
+                            "Upload The Scanned File_9": fileUrls[8]
+                        };
+                        const { data, error } = await supabaseClient
+                            .from('form6-weekly')
+                            .insert([row]);
+                        if (error) {
+                            window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(error.message);
+                        } else {
+                            window.location.href = 'notification.html?status=success';
+                            form.reset();
+                        }
+                    });
+                }
+                // NEW: Once in a Month form4 logic
+                // NEW: Once in 2 Months form6 logic
+                const once2MonthForm6 = document.getElementById('once2MonthForm6');
+                if (once2MonthForm6) {
+                    once2MonthForm6.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        const form = e.target;
+                        async function uploadFileToStorage(file, path) {
+                            if (!file) return null;
+                            const bucket = 'form6-files';
+                            const { data, error } = await supabaseClient.storage.from(bucket).upload(path, file, { upsert: true });
+                            if (error) {
+                                window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(error.message);
+                                throw error;
+                            }
+                            const { data: publicUrlData, error: urlError } = supabaseClient.storage.from(bucket).getPublicUrl(path);
+                            if (urlError) {
+                                window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(urlError.message);
+                                throw urlError;
+                            }
+                            return publicUrlData.publicUrl;
+                        }
+
+                        const ts = Date.now();
+                        let fileUrls = Array(4).fill(null);
+                        try {
+                            for (let i = 1; i <= 4; i++) {
+                                const file = form.querySelector(`input[name='file${i}']`)?.files?.[0] || null;
+                                if (file) fileUrls[i-1] = await uploadFileToStorage(file, `file${i}/${ts}_${file.name}`);
+                            }
+                        } catch (uploadErr) {
+                            return;
+                        }
+
+                        const row = {
+                            "Department": form["Department"].value,
+                            "Portfolio Name": form["Portfolio Name"].value,
+                            "Portfolio Member Name": form["Portfolio Member Name"].value,
+                            "Month": form["Month"].value,
+                            "Week no": form["Week no"].value ? parseInt(form["Week no"].value) : null,
+                            "Week Starting Date": form["Week Starting Date"].value || null,
+                            "Week Ending Date": form["Week Ending Date"].value || null,
+                            "Status_1": form["Status_1"].value,
+                            "Description_1": form["Description_1"].value,
+                            "Upload The Scanned File_1": fileUrls[0],
+                            "Status_2": form["Status_2"].value,
+                            "Description_2": form["Description_2"].value,
+                            "Upload The Scanned File_2": fileUrls[1],
+                            "Status_3": form["Status_3"].value,
+                            "Description_3": form["Description_3"].value,
+                            "Upload The Scanned File_3": fileUrls[2],
+                            "Status_4": form["Status_4"].value,
+                            "Description_4": form["Description_4"].value,
+                            "Upload The Scanned File_4": fileUrls[3]
+                        };
+                        const { data, error } = await supabaseClient
+                            .from('form6-once in 2 month')
+                            .insert([row]);
+                        if (error) {
+                            window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(error.message);
+                        } else {
+                            window.location.href = 'notification.html?status=success';
+                            form.reset();
+                        }
+                    });
+                }
+                // NEW: Semester form logic
+                const semesterDbForm = document.getElementById('semesterDbForm');
+                    // --- FACULTY FORM 4 - ONCE IN A SEMESTER LOGIC ---
+                    const semesterForm4 = document.getElementById('semesterForm4');
+                    if (semesterForm4) {
+                        semesterForm4.addEventListener('submit', async function(e) {
+                            e.preventDefault();
+                            const form = e.target;
+                            async function uploadFileToStorage(file, path) {
+                                if (!file) return null;
+                                const bucket = 'form4-files';
+                                const { data, error } = await supabaseClient.storage.from(bucket).upload(path, file, { upsert: true });
+                                if (error) {
+                                    window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(error.message);
+                                    throw error;
+                                }
+                                const { data: publicUrlData, error: urlError } = supabaseClient.storage.from(bucket).getPublicUrl(path);
+                                if (urlError) {
+                                    window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(urlError.message);
+                                    throw urlError;
+                                }
+                                return publicUrlData.publicUrl;
+                            }
+                            const ts = Date.now();
+                            let file1Url = null, file2Url = null, file3Url = null, file4Url = null, file5Url = null, file6Url = null, file7Url = null, file8Url = null;
+                            try {
+                                const file1 = form.querySelector("input[name='file1']")?.files?.[0] || null;
+                                if (file1) file1Url = await uploadFileToStorage(file1, `file1/${ts}_${file1.name}`);
+                                const file2 = form.querySelector("input[name='file2']")?.files?.[0] || null;
+                                if (file2) file2Url = await uploadFileToStorage(file2, `file2/${ts}_${file2.name}`);
+                                const file3 = form.querySelector("input[name='file3']")?.files?.[0] || null;
+                                if (file3) file3Url = await uploadFileToStorage(file3, `file3/${ts}_${file3.name}`);
+                                const file4 = form.querySelector("input[name='file4']")?.files?.[0] || null;
+                                if (file4) file4Url = await uploadFileToStorage(file4, `file4/${ts}_${file4.name}`);
+                                const file5 = form.querySelector("input[name='file5']")?.files?.[0] || null;
+                                if (file5) file5Url = await uploadFileToStorage(file5, `file5/${ts}_${file5.name}`);
+                                const file6 = form.querySelector("input[name='file6']")?.files?.[0] || null;
+                                if (file6) file6Url = await uploadFileToStorage(file6, `file6/${ts}_${file6.name}`);
+                                const file7 = form.querySelector("input[name='file7']")?.files?.[0] || null;
+                                if (file7) file7Url = await uploadFileToStorage(file7, `file7/${ts}_${file7.name}`);
+                                const file8 = form.querySelector("input[name='file8']")?.files?.[0] || null;
+                                if (file8) file8Url = await uploadFileToStorage(file8, `file8/${ts}_${file8.name}`);
+                            } catch (uploadErr) {
+                                return;
+                            }
+                            const row = {
+                                "Department": form["Department"].value,
+                                "Portfolio Name": form["Portfolio Name"].value,
+                                "Portfolio Memeber Name": form["Portfolio Memeber Name"].value,
+                                "Month": form["Month"].value,
+                                "Week no": form["Week no"].value ? parseInt(form["Week no"].value) : null,
+                                "Week Starting Date": form["Week Starting Date"].value || null,
+                                "Week Ending Date": form["Week Ending Date"].value || null,
+                                "Status_1": form["Status_1"].value,
+                                "Description_1": form["Description_1"].value,
+                                "Upload The Scanned File_1": file1Url,
+                                "Status_2": form["Status_2"].value,
+                                "Description_2": form["Description_2"].value,
+                                "Upload The Scanned File_2": file2Url,
+                                "Status_3": form["Status_3"].value,
+                                "Description_3": form["Description_3"].value,
+                                "Upload The Scanned File_3": file3Url,
+                                "Status_4": form["Status_4"].value,
+                                "Description_4": form["Description_4"].value,
+                                "Upload The Scanned File_4": file4Url,
+                                "Status_5": form["Status_5"].value,
+                                "Description_5": form["Description_5"].value,
+                                "Upload The Scanned File_5": file5Url,
+                                "Status_6": form["Status_6"].value,
+                                "Description_6": form["Description_6"].value,
+                                "Upload The Scanned File_6": file6Url,
+                                "Status_7": form["Status_7"].value,
+                                "Description_7": form["Description_7"].value,
+                                "Upload The Scanned File_7": file7Url,
+                                "Status_8": form["Status_8"].value,
+                                "Description_8": form["Description_8"].value,
+                                "Upload The Scanned File_8": file8Url
+                            };
+                            const { data, error } = await supabaseClient
+                                .from('form4-once in a semester')
+                                .insert([row]);
+                            if (error) {
+                                window.location.href = 'notification.html?status=error&msg=' + encodeURIComponent(error.message);
+                            } else {
+                                window.location.href = 'notification.html?status=success';
+                                form.reset();
+                            }
+                        });
+                    }
+                } else {
+                    console.error('Supabase script not loaded!');
+                }
+            });
+            </script>
+                            
+        </script>
+    <!-- Navigation Buttons -->
+    <div class="fixed bottom-6 right-6 flex gap-3 z-50">
+        <button onclick="history.back()" aria-label="Back" class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+            &#8592;
+        </button>
+        <button onclick="history.forward()" aria-label="Forward" class="bg-pmcPurple hover:bg-pmcPurpleDark text-white rounded-full shadow-lg p-3 flex items-center justify-center text-2xl transition">
+            &#8594;
+        </button>
+    </div>
+    <script src="/javascript/faculty-form.js"></script>
+
+</body>
+</html>

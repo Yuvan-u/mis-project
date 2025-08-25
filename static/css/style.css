@@ -1,0 +1,287 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logo {
+    max-width: 120px;
+}
+
+.college-name {
+    font-size: 22px;
+    color: #2c2c6c;
+    margin: 10px 0 5px 0;
+}
+
+.subtitle1 {
+    font-size: 12px;
+    color: rgba(182, 31, 4, 0.881);
+}
+
+.login-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 90%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #2c2c6c;
+}
+
+.role-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border: solid 5px #7b2cbf;
+    border-radius: 5px;
+    background-color: #7b2cbf;
+}
+
+.role-tabs button {
+    flex: 1;
+    padding: 10px;
+    background: #7b2cbf;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.role-tabs button:hover {
+    background: orange;
+}
+
+input {
+    width: 70%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 1px solid #7b2cbf;
+    outline: none;
+    border-radius: 10px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.login-btn {
+    background: #7b2cbf;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 40%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background: #1a9b03;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .college-name {
+        font-size: 16px;
+    }
+    .login-box {
+        padding: 15px;
+    }
+}
+
+
+
+/* faculty list */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  background: #7d4ca1;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+.logo img {
+  height: 50px;
+}
+nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+}
+nav a.active {
+  border-bottom: 2px solid white;
+}
+.username {
+  font-weight: bold;
+}
+.user-icon {
+  font-size: 20px;
+}
+
+/* Filters Section */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+.search-bar input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.add-faculty {
+  margin-left: auto;
+  background: #00c23d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Faculty Grid */
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+.faculty-card {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.faculty-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.faculty-card p {
+  margin-top: 10px;
+}
+
+/* ff */
+/* Container width tuned to match screenshot alignment */
+.container-xxl { max-width: 1120px; }
+
+/* Top bar */
+.pmc-purple { background:#6f3d8a; }
+.navbar .nav-link.underline { border-bottom:2px solid rgba(255,255,255,.95); }
+
+/* Controls row: keep items on a single line on large screens */
+.controls-row { row-gap: 12px; }
+
+/* Search width & icon like the screenshot */
+.search-wrap {
+  max-width: 520px;                 /* narrower than full to center nicely */
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  opacity: .65;
+  z-index: 2;
+}
+
+/* Faculty cards: minimal look */
+.faculty-card {
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.04);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.faculty-card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+.faculty-card .card-body { padding: 18px 0 6px; }
+
+/* Smaller profile image (as requested) */
+.faculty-img { width: 118px; height: 118px; object-fit: cover; }
+
+/* Name text size & spacing like screenshot */
+.fac-name { font-size: 15.5px; margin-bottom: 0; color:#262626; }
+
+/* Tighter row spacing between cards */
+.gy-5 { --bs-gutter-y: 2.25rem; }
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) {
+  #addBtn { width: 100%; }
+  .search-wrap { max-width: 100%; }
+}
+@media (max-width: 575.98px) {
+  .faculty-img { width: 104px; height: 104px; }
+  .fac-name { font-size: 15px; }
+}
+
+
+.faculty-card {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.faculty-card img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s ease-in-out;
+}
+
+.faculty-card img:hover {
+  transform: scale(1.05);
+}
+
+.faculty-name {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
